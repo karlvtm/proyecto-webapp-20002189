@@ -1,0 +1,54 @@
+.cuadroLogin{
+    border-radius: 10%;
+    background-color: lightyellow;
+    overflow: hidden;
+    width: 30rem;
+    height: 25rem;
+    margin-top: 20px;
+    margin-left: 700px;
+    padding: 0;
+    display: flex;
+    
+}
+
+.cuadroLogin table{
+    font-size: 25px;
+    font-family: Arial;
+    justify-content: center;
+    display: block;
+    margin-left: 150px;
+}
+
+.titulo{
+    font-size: 30px;
+    margin-top: 10rem;
+    margin-left: 46rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: yellow;
+}
+
+.ingreso{
+    width: 100px;
+    height: 75px;
+    background-color: rgb(34, 158, 34);
+    color: white;
+    border-radius: 10%;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 10px;
+    margin-left: 190px;
+}
+
+.ingreso:hover{
+    width: 100px;
+    height: 75px;
+    background-color: rgb(107, 211, 107);
+    color: white;
+    border-radius: 10%;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 10px;
+    margin-left: 190px;
+}

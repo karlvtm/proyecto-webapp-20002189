@@ -1,0 +1,31 @@
+.tablasSistema{
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    border-style: outset;
+    border-width: 5px;
+    border-color: black;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+.tablasSistema th{
+    border: 2px solid black;
+    border-bottom: 4px solid black;
+    padding: 1.5rem;
+    font-size: 25px;
+    background-color: rgb(193, 255, 100);
+}
+
+.tablasSistema td{
+    border: 1px solid black;
+    padding: 1.5rem;
+    font-size: 25px;
+    text-align: center;
+}
+
+.total{
+    border: 1px solid black;
+    padding: 1.5rem;
+    font-size: 25px;
+    text-align: center;
+}

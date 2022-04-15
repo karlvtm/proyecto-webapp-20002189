@@ -1,0 +1,40 @@
+.balance{
+    padding: 2;
+}
+
+.balance p{
+    color: yellow;
+    font-family: Arial;
+    font-size: 40px;
+    margin-left: 30px;
+}
+
+.balance input{
+    width: 1700px;
+    height: 40px;
+    margin-left: 30px;
+    font-size: 35px;
+    font-family: Arial;
+}
+
+.balance button{
+    width: 65px;
+    height: 65px;
+    background-color: rgb(11, 153, 11);
+    color: white;
+    font-size: 50px;
+    margin-left: 30px;
+    border-radius: 20px;
+    border-style: hidden;
+}
+
+.balance button:hover{
+    width: 65px;
+    height: 65px;
+    background-color: rgb(8, 117, 8);
+    color: white;
+    font-size: 50px;
+    margin-left: 30px;
+    border-radius: 20px;
+    border-style: hidden;
+}

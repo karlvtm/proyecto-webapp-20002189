@@ -1,0 +1,60 @@
+.opcVistas{
+    margin: 15px;
+    width: 250px;
+    height: 90px;
+    text-align: center;
+    background-color: lightyellow;
+    font-size: 30px;
+    font-family: Arial;
+    color: black;
+}
+
+.opcVistas:hover{
+    cursor:pointer;
+    margin: 15px;
+    width: 250px;
+    height: 90px;
+    text-align: center;
+    background-color: white;
+    font-size: 30px;
+    font-family: Arial;
+    color: black;
+}
+
+.opcVistasLink{
+    margin: 15px;
+    background-color: lightyellow;
+    border-color: black;
+    border: 1px solid transparent;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial;
+    text-decoration: none;
+    color: black;
+}
+
+.opcVistasLink:hover{
+    margin: 15px;
+    background-color: white;
+    border-color: black;
+    border: 1px solid transparent;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial;
+    text-decoration: none;
+    color: black;
+}
+
+.contenedor{
+    margin-left: 500px;
+}

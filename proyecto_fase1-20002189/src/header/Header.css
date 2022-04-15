@@ -1,0 +1,64 @@
+.menuSuperior{
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: yellow;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+    /*padding: 0 1rem;*/
+    z-index: 5;
+}
+
+.menuSuperior h1{
+
+}
+
+.buscar{
+    width: 100px;
+    height: 75px;
+    background-color: rgb(34, 158, 34);
+    color: white;
+    border-radius: 10%;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 10px;
+    margin-right: 500px;
+}
+
+.buscar:hover{
+    width: 100px;
+    height: 75px;
+    background-color: rgb(107, 211, 107);
+    color: white;
+    border-radius: 10%;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.busqueda{
+    width: 1050px;
+    height: 50px;
+    margin-left: 200px;
+    margin-top: 0px;
+    font-size: 40px;
+    font-family: Arial;
+    border-radius: 0%;
+    /*border-style: hidden;*/
+}
+
+main{
+    margin-top: 5rem;
+}
+
+@media (min-width: 768px){
+    .menuSuperior{
+        justify-content: space-between;
+    }
+}

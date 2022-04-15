@@ -1,0 +1,59 @@
+.seleccion{
+    float: right;
+    height: 5rem;
+    width: 90rem;
+    margin: 30px;
+    background-color: white;
+    border-color: black;
+    border: 1px solid transparent;
+    padding-top: 0px;
+
+    text-align: left;
+    font-size: 40px;
+    font-family: Arial;
+    text-decoration: none;
+    color: black;
+    
+}
+
+
+.seleccion:hover{
+    height: 5rem;
+    width: 90rem;
+    margin: 30px;
+    background-color: yellow;
+
+    text-align: left;
+    font-size: 40px;
+    font-family: Arial;
+}
+
+.dudas{
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    font-size: 70px;
+    color: yellow;
+    border-style: hidden;
+}
+
+.dudas:hover{
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    font-size: 70px;
+    color: white;
+    border-style: hidden;
+}
+
+.opciones{
+    margin-left: 150px;
+}
+
+.titulo{
+    font-size: 30px;
+    margin-top: 3rem;
+    margin-left: 54rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: yellow;
+}

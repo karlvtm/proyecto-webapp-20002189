@@ -15,19 +15,21 @@ routecln.get('/:cid', getClientById);
 
 routecln.post('/',
                 [
-                        check('nombre').not().isEmpty().isAlpha(),
-                        check('apellido').not().isEmpty().isAlpha(),
-                        check('telefono').isMobilePhone(),
+                        check('nombre').not().isEmpty().isString(),
+                        check('apellido').not().isEmpty().isString(),
+                        check('telefono').isString(),
                         check('email').not().isEmpty().isEmail(),
-                        check('pagoPreferido').isAlpha()
+                        check('empresa').isString(),
+                        check('pagoPreferido').isString()
                 ]
                 ,postCliente);
 
 routecln.patch('/:cid',
                 [
-                        check('telefono').isMobilePhone(),
-                        check('email').not().isEmpty().isEmail(),
-                        check('pagoPreferido').isAlpha()
+                        check('telefono').isString(),
+                        check('email').isEmail(),
+                        check ('empresa').isString(),
+                        check('pagoPreferido').isString()
                 ]
                 ,patchCliente);
 

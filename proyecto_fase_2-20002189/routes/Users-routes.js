@@ -1,27 +1,29 @@
 import express from "express";
 import { check } from "express-validator";
+import Users from "../models/UsersModule.js";
+import HttpError from '../models/HttpError.js';
 
 import { getUserById,
         login,
-        postNewUser} from "../controllers/Users.controllers.js";     
+        postNewUser} from "../controllers/Users-controllers.js";
 
 const routeusrs = express.Router();
 
 routeusrs.get('/:uid',getUserById);
 
-routeusrs.get('/login',
+routeusrs.post('/login',
                 [
                         check('userName').not().isEmpty().isLength({min: 5}),
-                        check('password').not().isEmail().isStrongPassword()
+                        check('password').not().isEmpty().isStrongPassword()
                 ]
-            ,login);
+                ,login);
 
-routeusrs.post('/newUser',
+routeusrs.post('/signUp',
                 [
-                        check('nombre').not().isEmpty().isAlpha(),
-                        check('apellido').not().isEmpty().isAlpha(),
+                        check('nombre').not().isEmpty(),
+                        check('apellido').not().isEmpty(),
                         check('userName').not().isEmpty().isLength({min: 5}),
-                        check('password').not().isEmail().isStrongPassword()
+                        check('password').not().isEmpty()
                 ]
             ,postNewUser);
 

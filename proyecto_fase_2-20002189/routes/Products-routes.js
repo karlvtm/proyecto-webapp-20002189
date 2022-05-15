@@ -5,7 +5,7 @@ import { getProducts,
         getProductById,
         postProducto,
         patchProducto,
-        deleteProducto } from "../controllers/Products-controllers";
+        deleteProducto } from "../controllers/Products-controllers.js";
 
 const routeprods = express.Router();
 
@@ -19,19 +19,17 @@ routeprods.post('/',
                         check('tipoProd').notEmpty(),
                         check('fechaSiembra').notEmpty().isDate(),
                         check('fechaCosecha').notEmpty().isDate(),
-                        check('diasUtil').notEmpty().isNumeric,
-                        check('precio').notEmpty().isFloat() 
+                        check('diasUtil').notEmpty().isNumeric(),
+                        check('precio').notEmpty().isNumeric()
                 ] 
                 ,postProducto);
 
-routeprods.patch('/',
+routeprods.patch('/:pid',
                 [
-                        check('nombreProd').notEmpty(),
-                        check('tipoProd').notEmpty(),
-                        check('fechaSiembra').notEmpty().isDate(),
-                        check('fechaCosecha').notEmpty().isDate(),
-                        check('diasUtil').notEmpty().isNumeric,
-                        check('precio').notEmpty().isFloat() 
+                        check('fechaSiembra').isDate(),
+                        check('fechaCosecha').isDate(),
+                        check('diasUtil').isNumeric(),
+                        check('precio').isNumeric() 
                 ] 
                 ,patchProducto);
 

@@ -1,0 +1,66 @@
+.cuadroSignUp{
+    border-radius: 10%;
+    background-color: lightyellow;
+    overflow: hidden;
+    width: 30rem;
+    height: 45rem;
+    margin-top: 20px;
+    margin-left: 700px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cuadroSignUp table{
+    font-size: 25px;
+    font-family: Arial;
+    justify-content: center;
+    display:block;
+    margin-left: 0px;
+}
+
+.cuadroSignUp table input{
+    font-size: 25px;
+    font-family: Arial;
+    justify-content: center;
+    display:block;
+}
+
+.cambiosignup{
+    font-size: 15px;
+    font-family: Arial;
+    justify-content: center;
+}
+
+.tituloSignUp{
+    font-size: 30px;
+    margin-top: 0rem;
+    margin-left: 46rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: yellow;
+}
+
+.ingreso{
+    width: 300px;
+    height: 75px;
+    background-color: rgb(34, 158, 34);
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 15px;
+}
+
+.ingreso:hover{
+    width: 300px;
+    height: 75px;
+    background-color: rgb(107, 211, 107);
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 15px;
+    cursor: pointer;
+}

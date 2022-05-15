@@ -1,0 +1,61 @@
+.cuadroUpdateProduct{
+    border-radius: 10%;
+    background-color: lightyellow;
+    overflow: hidden;
+    width: 30rem;
+    height: 40rem;
+    margin-top: 20px;
+    margin-left: 700px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cuadroUpdateProduct table{
+    font-size: 25px;
+    font-family: Arial;
+    justify-content: center;
+    display:block;
+    margin-left: 0px;
+}
+
+.cuadroUpdateProduct table input{
+    font-size: 25px;
+    margin: 15px;
+    margin-left: 0px;
+    font-family: Arial;
+    display:block;
+}
+
+.tituloUpdateProduct{
+    font-size: 30px;
+    margin-top: 6rem;
+    margin-left: 33rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: yellow;
+}
+
+.actualizarProduct{
+    width: 115px;
+    height: 75px;
+    background-color: rgb(34, 158, 34);
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 15px;
+}
+
+.actualizarProduct:hover{
+    width: 115px;
+    height: 75px;
+    background-color: rgb(107, 211, 107);
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-style: hidden;
+    margin-top: 15px;
+    cursor: pointer;
+}

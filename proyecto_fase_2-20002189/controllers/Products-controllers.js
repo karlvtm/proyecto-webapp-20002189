@@ -2,37 +2,43 @@ import { v4 } from "uuid";
 import { validationResult } from "express-validator";
 
 import HttpError from '../models/HttpError.js';
+import Products from "../models/ProductsModel.js";
 
-let PRODUCTS = [
-    {
-        id: "p1",
-        nombreProd: "tomate",
-        tipoProd: "tomate",
-        fechaSiembra: "01/01/2019",
-        fechaCosecha: "32/13/2019",
-        diasUtil: 25,
-        precio: 09.99
 
+export const getProducts = async (req, res, next) =>{
+
+    let todosPr;
+    try {
+        todosPr = await Products.find();
+        res.status(200).send(todosPr);
+    } catch (err) {
+        console.log(err);
+        const error = new HttpError('ocurrio un error intente de nuevo mas tarde',500);
+        return next(error);
     }
-]
-
-export const getProducts = (req, res, next) =>{
-    res.status(200).send({Productos: PRODUCTS});
 }
 
-export const getProductById = (req, res, next) =>{
+export const getProductById = async (req, res, next) =>{
     const id = req.params.pid;
-    const pBuscado = PRODUCTS.filter( p => {return p.id === id});
+    
+    let producto;
+    try{
+        producto = await Products.findById(id);
+    } catch(err){
+        console.log(err);
+        const error = new HttpError("ocurrio un error desconocido, intente mas tarde", 500);
+        return next(error);
+    }
 
-    if(!pBuscado){
+    if(!productos || productos.lenght === 0){
         const error = new HttpError("el producto solicitado no existe, intente ingresarlo antes al sistema.",404);
         return next(error);
     }else{
-        res.json(pBuscado);
+        res.json(productos);
     }
 }
 
-export const postProducto = (req, res, next) =>{
+export const postProducto = async (req, res, next) =>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         console.log(errors);
@@ -42,24 +48,27 @@ export const postProducto = (req, res, next) =>{
     } else {
         const {nombreProd, tipoProd, fechaSiembra, fechaCosecha, diasUtil, precio} = req.body;
 
-        const nuevoProducto = 
-            {
-                id: v4(),
+        const nuevoProducto = new Products({
                 nombreProd,
                 tipoProd,
                 fechaSiembra,
                 fechaCosecha,
                 diasUtil,
-                precio
+                precio,
+            });
+
+            try{
+                await nuevoProducto.save();
+                res.status(201).json({mensaje: "producto agregado correctamente"});
+            }catch (err){
+                console.log(err);
+                const error  = new HttpError("Ocurrió un error al ingresar el nuevo producto, intente de nuevo",402);
+                return next(error);
             }
-
-            PRODUCTS.push(nuevoProducto);
-            res.status(201).json(nuevoProducto);
-
     }
 }
 
-export const patchProducto = (req, res, next) =>{
+export const patchProducto = async (req, res, next) =>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         console.log(errors);
@@ -68,26 +77,51 @@ export const patchProducto = (req, res, next) =>{
         );
     } else {
         const {nombreProd, tipoProd, fechaSiembra, fechaCosecha, diasUtil, precio} = req.body;
-        const id = req.params.id;
+        const id = req.params.pid;
 
-        const cambio = {...PRODUCTS.find(p =>(p.id === id))};
+        let producto;
+        try{
+            producto = await Products.findById(id);
+        } catch(err){
+            console.log(err);
+            const error = new HttpError("ocurrio un error desconocido, intente mas tarde", 500);
+            return next(error);
+        }
 
-        cambio.nombreProd = nombreProd;
-        cambio.tipoProd = tipoProd;
-        cambio.fechaSiembra = fechaSiembra;
-        cambio.fechaCosecha = fechaCosecha;
-        cambio.diasUtil = diasUtil;
-        cambio.precio = precio;
+        if(!producto){
+            const error = new HttpError("no se encuentra el producto solicitado, intente ingresarlo primero", 404);
+            return next(error);
+        }else{
+            producto.nombreProd = nombreProd;
+            producto.tipoProd = tipoProd;
+            producto.fechaSiembra = fechaSiembra;
+            producto.fechaCosecha = fechaCosecha;
+            producto.diasUtil = diasUtil;
+            producto.precio = precio;
+        }
 
-        const indice = {...PRODUCTS.findIndex(p =>(p.id === id))};
-        PRODUCTS[indice] = cambio;
-        res.status(200).json(cambio);
+        try{
+            await producto.save();
+            res.status(200).json({mensaje: "El producto ha sido actualizado correctamente"});
+        }catch(err){
+            console.log(err);
+            const error = new HttpError("algo salio mal al momento de modificar el producto, intente de nuevo",402);
+            return next(error)
+        }
     }
 }
 
-export const deleteProducto = (req, res, next) =>{
+export const deleteProducto = async (req, res, next) =>{
     const id = req.params.pid;
 
-    const PRODUCTS = PRODUCTS.filter(p =>(p.id != id));
-    res.status(200).json({mensaje: "Producto eliminado exitosamente."});
+    let prodEliminado;
+        try {
+            prodEliminado = await Products.findById(id);
+            await prodEliminado.remove();
+            res.status(200).json({mensaje: "Producto eliminado exitosamente."});
+        } catch (err) {
+            console.log(err)
+            const error = new HttpError("no se encontró el producto especificado", 500);
+            return next(error);
+        }
 }

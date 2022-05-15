@@ -2,28 +2,34 @@ import { v4 } from "uuid";
 import { validationResult } from "express-validator";
 
 import HttpError from '../models/HttpError.js';
+import Clients from "../models/ClientsModel.js";
 
-let CLIENTS = [
-    {
-        id: "a",
-        nombre: "adsf",
-        apellido: "asdf",
-        telefono: "1234-4565",
-        email: "asdf@dfsdf.com",
-        empresa: "asdfasdf",
-        pagoPreferido: "efectivo"
+
+export const getClients = async (req, res, next) =>{
+    let todosCl;
+    try {
+        todosCl = await Clients.find()
+    } catch (err) {
+        console.log(err);
+        const error = new HttpError('ocurrio un error intente de nuevo mas tarde',500);
+        return next(error);
     }
-]
-
-export const getClients = (req, res, next) =>{
-    res.status(200).send({clientes: CLIENTS});
+    res.status(200).send(todosCl);
 }
 
-export const getClientById = (req, res, next) =>{
+export const getClientById = async (req, res, next) =>{
     const id = req.params.cid;
-    const clienteBuscado = CLIENTS.filter( c => {return c.id === id});
 
-    if(!clienteBuscado){
+    let clienteBuscado;
+    try {
+        clienteBuscado = await Clients.findById(id);
+    } catch (err) {
+        console.log(error)
+        const error = new HttpError("ocurrio un error intente de nuevo mas tarde", 500);
+        return next(error);
+    }
+
+    if(!clienteBuscado || clienteBuscado.lenght === 0){
         const error = new HttpError("el cliente solicitado no existe.",404);
         return next(error);
     }else{
@@ -31,7 +37,7 @@ export const getClientById = (req, res, next) =>{
     }
 }
 
-export const postCliente = (req, res, next) =>{
+export const postCliente = async (req, res, next) =>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         console.log(errors);
@@ -41,24 +47,29 @@ export const postCliente = (req, res, next) =>{
     } else {
         const {nombre, apellido, telefono, email, empresa, pagoPreferido} = req.body;
 
-        const nuevoCliente = 
-            {
-                id: v4(),
+        const nuevoCliente = new Clients({
                 nombre,
                 apellido,
                 telefono,
                 email,
                 empresa,
                 pagoPreferido
-            }
+            })
 
-            CLIENTS.push(nuevoCliente);
-            res.status(201).json(nuevoCliente);
+            try {
+                await nuevoCliente.save();
+                res.status(201).json({mensaje: "el cliente nuevo fue agregado con exito", nuevoCliente: nuevoCliente});
+            } catch (err) {
+                console.log(err);
+                const error  = new HttpError("Ocurrió un error al ingresar el nuevo cliente, intente de nuevo",402);
+                return next(error);
+            }
 
     }
 }
 
-export const patchCliente = (req, res, next) =>{
+export const patchCliente = async (req, res, next) =>{
+    const errors = validationResult(req);
     if(!errors.isEmpty()){
         console.log(errors);
         return next(
@@ -68,20 +79,47 @@ export const patchCliente = (req, res, next) =>{
         const {telefono, email, empresa, pagoPreferido} = req.body;
         const id = req.params.cid;
 
-        const cambio = {...CLIENTS.find(c =>(c.id === id))};
-        cambio.telefono = telefono;
-        cambio.email = email;
-        cambio.empresa = empresa;
-        cambio.pagoPreferido = pagoPreferido;
+        let cliente;
+        try{
+            cliente = await Clients.findById(id);
+        } catch(err){
+            console.log(err);
+            const error = new HttpError("ocurrio un error desconocido, intente mas tarde", 500);
+            return next(error);
+        }
 
-        const indice = CLIENTS.findIndex(c =>(c.id === id));
-        CLIENTS[indice] = cambio;
-        res.status(200).json(cambio);
+        if(!cliente){
+            const error = new HttpError("no se encuentra el producto solicitado, intente ingresarlo primero", 404);
+            return next(error);
+        }else{
+            cliente.telefono = telefono;
+            cliente.email = email;
+            cliente.empresa = empresa;
+            cliente.pagoPreferido = pagoPreferido;
+        }
+
+        try {
+            await cliente.save();
+            res.status(200).json({mensaje: "el cliente fue modificado con exito", nuevoCliente: nuevoCliente});
+        } catch (err) {
+            console.log(err);
+            const error = new HttpError("algo salio mal al momento de modificar el cliente, intente de nuevo",402);
+            return next(error)
+        }
     }
 }
 
-export const deleteCliente = (req, res, next) =>{
-    const id = req.params.pid;
-    CLIENTS = CLIENTS.filter(c =>(c.id != id));
-    res.status(200).json({mensaje: 'Cliente eliminado exitosamente.'});
+export const deleteCliente = async (req, res, next) =>{
+    const id = req.params.cid;
+
+    let clntEliminado;
+        try {
+            clntEliminado = await Clients.findById(id);
+            await clntEliminado.remove();
+            res.status(200).json({mensaje: 'Cliente eliminado exitosamente.'});
+        } catch (err) {
+            console.log(err)
+            const error = new HttpError("no se encontró el cliente especificado", 500);
+            return next(error);
+        }
 }

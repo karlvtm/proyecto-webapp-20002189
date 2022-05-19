@@ -74,6 +74,9 @@ const Login = (props) =>{
                             <tr>
                                 <td>
                                     <button className="ingreso"  /*onClick={console.log("click")}*/>Ingresar</button>
+                                    <NavLink className="cambiosignup" to="/">
+                                        MENU
+                                    </NavLink>
                                 </td>
                             </tr>
                         </tbody>

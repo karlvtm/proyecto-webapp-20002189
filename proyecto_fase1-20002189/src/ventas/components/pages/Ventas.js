@@ -75,9 +75,15 @@ const Ventas = () =>{
                 </tr>
                 <tr>
                     <td>
-                        <p>Nueva Venta:</p>
-                        <input type="text" ></input>
-                        <button>+</button>
+                        <form onSubmit={submitIncomeHandler}>
+                            <p>Nueva Venta:</p>
+                            <input type="text" placeholder="Cliente" value={cliente} onInput={e => setCliente(e.target.value)}/>
+                            <input type="text" placeholder="Producto" value={producto} onInput={e => setProducto(e.target.value)}/>
+                            <input type="text" placeholder="Precio Unitario" value={pUnitario} onInput={e => setPUnitario(e.target.value)}/>
+                            <input type="text" placeholder="Cantidad" value={cantidad} onInput={e => setCantidad(e.target.value)}/>
+                            <input type="text" placeholder="Total" value={total} onInput={e => setTotal(e.target.value)}/>
+                            <button>+</button>
+                        </form>
                     </td>
                 </tr>
                 <tr>
@@ -87,9 +93,14 @@ const Ventas = () =>{
                 </tr>
                 <tr>
                     <td>
-                        <p>Nuevo Gasto:</p>
-                        <input type="text" ></input>
-                        <button>+</button>
+                        <form onSubmit={submitOutcomeHandler}>
+                            <p>Nuevo Gasto:</p>
+                            <input type="text" placeholder="Compra" value={compra} onInput={e => setCompra(e.target.value)}/>
+                            <input type="text" placeholder="Descripción" value={descripcion} onInput={e => setDescripcion(e.target.value)}/>
+                            <input type="text" placeholder="Monto" value={monto} onInput={e => setMonto(e.target.value)}/>
+                            <input type="text" placeholder="Responsable" value={responsable} onInput={e => setResponsable(e.target.value)}/>
+                            <button>+</button>
+                        </form>
                     </td>
                 </tr>
                 <tr>

@@ -1,9 +1,17 @@
-import React from "react";
+import { React, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../../shared/context/auth-context.js";
 
 import './Menu.css';
 
 const Menu = () =>{
+    const logout = useContext(AuthContext);
+
+    const cerrarSesion = async(event) =>{
+        event.preventDefault();
+        logout.logout();
+    }
+
     return(
         <div>
             <div className="titulo">
@@ -44,7 +52,9 @@ const Menu = () =>{
                 </tr>
                 <tr>
                     <td>
-                        <NavLink className="seleccion" to="/login" exact>Cerrar Sesion</NavLink>
+                        {/*<form onSubmit={cerrarSesion}>*/}
+                            <button className="seleccion" onClick={cerrarSesion}>Cerrar Sesión</button>
+                        {/*</form>*/}
                     </td>
                     <td>
                         <button className="dudas">?</button>

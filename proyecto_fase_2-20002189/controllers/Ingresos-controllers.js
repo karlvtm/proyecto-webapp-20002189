@@ -23,14 +23,14 @@ export const postIngresos = async(req, res, next) =>{
             new HttpError("Los datos ingresados no son validos.", 422)
         );
     } else {
-        const {nombre, apellido, telefono, email, empresa} = req.body;
+        const {cliente, producto, pUnitario, cantidad, total} = req.body;
 
         const nuevoIngreso = new Ingresos({
-                nombre,
-                apellido,
-                telefono,
-                email,
-                empresa
+                cliente,
+                producto,
+                pUnitario,
+                cantidad,
+                total
             })
 
             try {

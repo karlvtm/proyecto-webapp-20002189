@@ -30,10 +30,10 @@ const CuerpoIngresos = () =>{
     }
     ,[]);
     
-    useEffect(()=>{
+    /*useEffect(()=>{
         console.log(dataIngresos);
     }
-    ,[dataIngresos]);
+    ,[dataIngresos]);*/
 
 
     return(

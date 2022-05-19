@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 import './App.css';
@@ -23,20 +23,29 @@ const App = () =>{
 
   const login = useCallback((uid, token) => {
     setToken(token);
+    localStorage.setItem('userData', JSON.stringify({userId: uid, token: token}));
     setUserId(uid);
   }, []);
 
   const logout = useCallback(() => {
     setToken(false);
+    localStorage.removeItem('userData');
     setUserId(null);
   }, []);
   console.log("TOKEN: " + token);
   console.log("ID: " + userId);
+  console.log(token);
 
+  useEffect(() =>{
+    const storedUser = JSON.parse(localStorage.getItem('userData'));
+    if(storedUser && storedUser.token){
+      login(storedUser.userId, storedUser.token)
+    }
+  }, [login]);
 
   let routes;
   
-  if (!token) {
+  if (token) {
     routes = (
       <Switch>
           <Route path="/" exact>

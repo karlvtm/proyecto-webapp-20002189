@@ -52,9 +52,7 @@ const Menu = () =>{
                 </tr>
                 <tr>
                     <td>
-                        {/*<form onSubmit={cerrarSesion}>*/}
-                            <button className="seleccion" onClick={cerrarSesion}>Cerrar Sesión</button>
-                        {/*</form>*/}
+                        <button className="seleccion" onClick={cerrarSesion}>Cerrar Sesión</button>
                     </td>
                     <td>
                         <button className="dudas">?</button>

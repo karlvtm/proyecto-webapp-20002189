@@ -105,7 +105,6 @@ const Ventas = () =>{
                 </tr>
                 <tr>
                     <td>
-                        {/* <p>Total:</p> */}
                         <TablaTotales/>
                     </td>
                 </tr>

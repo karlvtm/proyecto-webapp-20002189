@@ -31,8 +31,8 @@ const SignUp = (props) =>{
 
             const respuesta = await fetch('http://localhost:5000/api/users/signUp', reqOpts);
             const data = await respuesta.json();
-            console.log(data.user._id);
-            console.log(data);
+            //console.log(data.user._id);
+            //console.log(data);
             ingreso.login(data.user._id, data.user.token);
 
         } catch (err) {

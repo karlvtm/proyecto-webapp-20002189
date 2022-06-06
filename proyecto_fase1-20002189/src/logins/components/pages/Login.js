@@ -73,7 +73,7 @@ const Login = (props) =>{
                             </tr>
                             <tr>
                                 <td>
-                                    <button className="ingreso"  /*onClick={console.log("click")}*/>Ingresar</button>
+                                    <button className="ingreso">Ingresar</button>
                                     <NavLink className="cambiosignup" to="/">
                                         MENU
                                     </NavLink>

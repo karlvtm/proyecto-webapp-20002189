@@ -29,12 +29,6 @@ const CuerpoEgresos = () =>{
         retrieveDataEgresos();
     }
     ,[]);
-    
-    /*useEffect(()=>{
-        console.log(dataEgresos);
-    }
-    ,[dataEgresos]);*/
-
 
     return(
         <tbody>

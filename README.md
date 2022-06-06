@@ -1,5 +1,9 @@
 # proyecto-webapp-20002189
 
+--------------------LINK AL VIDEO-----------------------
+
+https://youtu.be/9KiiCBUy-s8
+
 --------------------Info Importante----------------------
 
 El proyecto se encuentra dividido en fases y dichas fases son las carpetas o archivos que se miran al momento de ingresar al mismo.
